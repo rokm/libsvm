@@ -25,6 +25,9 @@ void exit_with_help()
 	"	2 -- radial basis function: exp(-gamma*|u-v|^2)\n"
 	"	3 -- sigmoid: tanh(gamma*u'*v + coef0)\n"
 	"	4 -- precomputed kernel (kernel values in training_set_file)\n"
+	"	5 -- intersection (min): min(u,v)\n"
+	"	6 -- chi-squared: 2uv/(u+v)\n"
+	"	7 -- Jenson-Shannon's: u/2log((u+v)/u)) + v/2log((u+v)/v))\n"
 	"-d degree : set degree in kernel function (default 3)\n"
 	"-g gamma : set gamma in kernel function (default 1/num_features)\n"
 	"-r coef0 : set coef0 in kernel function (default 0)\n"
@@ -65,7 +68,7 @@ static int max_line_len;
 static char* readline(FILE *input)
 {
 	int len;
-	
+
 	if(fgets(line,max_line_len,input) == NULL)
 		return NULL;
 
